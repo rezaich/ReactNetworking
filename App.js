@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { StyleSheet, View, Text, Image, Modal, TextInput, Alert, PermissionsAndroid, Button, TouchableOpacity } from 'react-native';
 
-
 function useInput() {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [dateText, setDateText] = useState('empty');
 
   const showMode = (currentMode) => {
     setShow(true);
@@ -20,15 +20,23 @@ function useInput() {
     const currentDate = selectedDate || date
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+
+    let tempDate = new Date(currentDate);
+    let fDate = tempdate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    let fTime = 'Hours: ' + tempDate.getHours() + ' | Minutes: ' + tempDate.getMinutes();
+    setDateText(fDate + '\n' + fTime)
+    console.log(fDate)
   }
   return {
     date,
     showDatepicker,
     show,
     mode,
-    onChange
+    onChange,
+    dateText
   }
 }
+
 
 export default app = () => {
   const input = useInput(new Date())
@@ -41,7 +49,7 @@ export default app = () => {
 
         <Button
           onPress={input.showDatepicker}
-          title={input.date.toLocaleDateString("DD/MM/YYYY")}
+          title={input.dateText}
           color={'#931A25'} />
         {
           input.show && (
@@ -59,7 +67,7 @@ export default app = () => {
 
         <Button
           onPress={input2.showDatepicker}
-          title={input2.date.toLocaleDateString()}
+          title={input.dateText}
           color={'#931A25'} />
         {input2.show && (
           <DateTimePicker
@@ -69,6 +77,14 @@ export default app = () => {
             display="default"
             onChange={input2.onChange} />
         )}
+      </View>
+      <View
+        style={{ padding: 10, borderRadius: 5 }}>
+
+        <Button
+          onPress={press}
+          title='test'
+          color={'#931A25'} />
       </View>
     </View>
   )

@@ -26,9 +26,9 @@ export default function App() {
         setMode(currentMode);
     }
 
-    // const showDatepicker = () => {
-    //   showMode('date');
-    // }
+    const showDatepicker = () => {
+        showMode('date');
+    }
     const showTimepicker = () => {
         showMode('time');
     };
