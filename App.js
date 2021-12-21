@@ -22,7 +22,7 @@ function useInput() {
     setDate(currentDate);
 
     let tempDate = new Date(currentDate);
-    let fDate = tempdate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
+    let fDate = tempDate.getDate() + '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
     let fTime = 'Hours: ' + tempDate.getHours() + ' | Minutes: ' + tempDate.getMinutes();
     setDateText(fDate + '\n' + fTime)
     console.log(fDate)
@@ -67,7 +67,7 @@ export default app = () => {
 
         <Button
           onPress={input2.showDatepicker}
-          title={input.dateText}
+          title={input2.dateText}
           color={'#931A25'} />
         {input2.show && (
           <DateTimePicker
@@ -77,14 +77,6 @@ export default app = () => {
             display="default"
             onChange={input2.onChange} />
         )}
-      </View>
-      <View
-        style={{ padding: 10, borderRadius: 5 }}>
-
-        <Button
-          onPress={press}
-          title='test'
-          color={'#931A25'} />
       </View>
     </View>
   )
